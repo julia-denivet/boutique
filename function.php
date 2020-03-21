@@ -6,7 +6,10 @@ class boutique
 		private $host = "localhost";
 		private $username = "root";
 		private $password = "";
-        private $db = "boutique";
+		private $db = "boutique";
+		private $database;
+
+
         
 
         public function inscription()
@@ -121,7 +124,26 @@ class boutique
                     }
                 
                 }
-            }
+			}
+
+
+			public function panier()
+			{
+				if(!isset($_SESSION['login']) || !isset($_SESSION['password']))
+				{
+					$connexion = mysqli_connect($this->host, $this->username, $this->password, $this->db);
+					$sql = "SELECT id , nom , img FROM produit WHERE id_produit = 1";
+					$req = mysqli_query($connexion, $sql);
+					var_dump($connexion);
+					
+                        
+				}
+
+			}
+
+			
+			
+
         
 		
 
