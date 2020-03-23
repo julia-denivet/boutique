@@ -2,15 +2,11 @@
 
 class boutique
 {
-    
 		private $host = "localhost";
 		private $username = "root";
 		private $password = "";
 		private $db = "boutique";
 		private $database;
-
-
-        
 
         public function inscription()
 		{
@@ -104,7 +100,6 @@ class boutique
                             $_SESSION['password'] = $_POST['passe'];
                             $_SESSION['id'] = $data['id'];
                             $_SESSION['id_droits'] = $data['id_droits'];
-                            var_dump($_SESSION);
                             header('Location: index.php');
                         }
                         else 
@@ -129,17 +124,65 @@ class boutique
 
 			public function panier()
 			{
-				if(!isset($_SESSION['login']) || !isset($_SESSION['password']))
-				{
+				
 					$connexion = mysqli_connect($this->host, $this->username, $this->password, $this->db);
-					$sql = "SELECT id , nom , img FROM produit WHERE id_produit = 1";
+					$sql = "SELECT id, nom, prix, img FROM produit WHERE id = 2";
+					$sql2 = "SELECT * FROM panier where id_utilisateur = 1";
+					$req2 =  mysqli_query($connexion, $sql2);
 					$req = mysqli_query($connexion, $sql);
-					var_dump($connexion);
-					
+					while ($data = mysqli_fetch_assoc($req))
+					{   
+            
+        			?>
+            <article>
+                <div>
+                    <img src="<?php $data['img'] ?>">
+                </div>
+
+                <div>
+                    <?php  echo $data['nom'] ?>
+                </div>
+
+                <div>
+                    <?php  echo $data['prix'] ?>
+                </div>
+
+                <div>
+                    1
+                </div>
+                
+                <div>
+					<?php while ($donnee = mysqli_fetch_assoc($req2))
+					 {
+						
+					 ?>
+					<form method="post"><button type="submit" name="supprimer_produit" value="'.$donnee['id_produit'].'"><img src="img/del.png"></button></form>
+					<?php 
+					} ?>
+					<?php
+						if(isset($_POST['supprimer_produit']))
+						{
+							$connexion = mysqli_connect($this->host, $this->username, $this->password, $this->db);
+							$sql = "DELETE * FROM panier WHERE id_produit = '".$_POST['supprimer_produit']."'";
+							$resultat_supprimer = mysqli_query($connexion, $sql);
+							header('Location: panier.php');
+						}
+        		    ?>
+                </div>
+            </article>
+     <?php 
+             }
+
                         
-				}
+				
 
 			}
+
+		public function delete()
+		{
+			
+
+		}
 
 			
 			

@@ -1,10 +1,6 @@
 <?php
-session_start();
-
-require("function.php");
-$var = new boutique();
-$req = $var->panier();
-
+	session_start();
+	require("function.php");
 ?>
 <html>
 <head>
@@ -12,6 +8,7 @@ $req = $var->panier();
 	<link rel="stylesheet" href="src/e_style.css"/>
 	<title>Panier - Boutique</title>
 </head>
+	
 <body>
     <section>
         <article>
@@ -32,35 +29,9 @@ $req = $var->panier();
             </div>
         </article>
         <?php
-            
-            while ($data = mysqli_fetch_assoc($req))
-             {   
-            
+			$var = new boutique();
+			$var->panier();
         ?>
-            <article>
-                <div>
-                    <img src="">
-                </div>
-
-                <div>
-                    <?php  echo $data['nom'] ?>
-                </div>
-
-                <div>
-                    <?php  echo $data['prix'] ?>
-                </div>
-
-                <div>
-                    1
-                </div>
-                
-                <div>
-                    <img src="del.png">
-                </div>
-            </article>
-     <?php 
-             }
-     ?>
     </section>
     <div>
         Grand Total : <span> 3030,20€ </span>
