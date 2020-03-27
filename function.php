@@ -178,12 +178,6 @@ class boutique
 
 			}
 
-		public function delete()
-		{
-			
-
-		}
-
 			
 			
 
