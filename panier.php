@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	require("function.php");
+	require("fonctions/function_boutique.php");
 ?>
 <html>
 <head>
@@ -33,9 +33,6 @@
 			$var->panier();
         ?>
     </section>
-    <div>
-        Grand Total : <span> 3030,20€ </span>
-    </div>
     
 </body>
 

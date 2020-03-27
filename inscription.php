@@ -1,6 +1,12 @@
 <?php
-session_start();
-
+	session_start();
+	if(!isset($_SESSION['login']) || !isset($_SESSION['password'])){}
+	else
+	{
+		header('Location: index.php');
+	}
+	require "fonctions/function_co_ins.php";
+	$var = new connexion_inscription;
 ?>
 <!doctype html>
 <html>
@@ -12,7 +18,7 @@ session_start();
 	
 	<body>
 		<header>
-			
+			<?php include "header.php"; ?>
 		</header>
 		
 		<main id="inscription">
@@ -27,7 +33,6 @@ session_start();
                         <div class="inscription_form_partie">
                             <input class="e_button" type="text" name="nom" placeholder="NOM"/>
                             <input class="e_button" type="password" name="passe2" placeholder="CONFIRMATION MOT DE PASSE"/>
-							
 						</div>
 						<div class="inscription_form_partie">
                             <input class="e_button" type="mail" name="email" placeholder="E-MAIL"/>
@@ -37,8 +42,6 @@ session_start();
 						<input class="e_button" type="submit" value="INSCRIPTION" name="inscription"/>
 						<input type="submit" class="e_button" value="CONNEXION" name="connexion"/>
 						<?php
-							require("function.php");
-							$var = new boutique();
 							$var->inscription();
 						?>
 					</form>
@@ -47,7 +50,7 @@ session_start();
 		</main>
 			
 		<footer>
-				
+			<?php include "footer.php"; ?>
 		</footer>
 	</body>
 </html>
