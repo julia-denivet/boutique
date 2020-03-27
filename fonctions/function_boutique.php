@@ -97,7 +97,10 @@
 				$prix=0;
 				while ($data = mysqli_fetch_assoc($req))
 				{   
-					$prix=(floatval($data['prix_ttc'])*floatval($data['quantite'])) + $prix;
+					$prix+=(floatval($data['prix_ttc'])*intval($data['quantite']));
+
+					$prixprod=floatval($data['prix_ttc']) ;
+					
 				?>
 		<article>
 			<div>
@@ -130,16 +133,17 @@
         	?>
 				
 			</div>
-			<div>
-        		Grand Total : <span> <?php echo $prix ?> </span>
-            </div>
+			
     
 		</article>
 <?php 
 		 }
-
-					
-			//}
+?>
+			
+				<div>
+        		Grand Total : <span> <?php echo $prix ?> </span>
+			   </div>	
+			<?php
 
 		}
 	}
