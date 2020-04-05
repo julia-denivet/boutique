@@ -1,0 +1,719 @@
+/* GENERALE */
+
+	html{
+		margin: 0;
+	}
+
+	body{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		margin: 0;
+		font-family: GeosansLight;
+	}
+
+	main{
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+		width: 100%;
+		max-width: 1200px;
+		min-height: 80vh;
+	}
+
+	h1, h2, h3, h4, h5, h6{
+		margin: 0;
+	}
+
+	a{
+		color: #000000;
+		text-decoration: none;
+	}
+
+	::-webkit-scrollbar {
+		width: 10px;
+	}
+
+	::-webkit-scrollbar-track {
+		border-radius: 10px;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background: #000000; 
+		border-radius: 10px;
+	}
+
+	::-webkit-scrollbar-thumb:hover {
+		background: #e4332d;
+	}
+
+	@font-face{
+		font-family: GeosansLight;
+		src: url("Police/geo_sans_light/GeosansLight.ttf")
+	}
+
+	@font-face{
+		font-family: Roboto;
+		src: url("Police/Roboto/Roboto-Bold.ttf")
+	}
+
+	/* HEADER */
+
+		header{
+			display: flex;
+			flex-direction: row;
+			justify-content: space-around;
+			align-items: center;
+			width: 100%;
+			height: 8vh;
+			border-bottom: 2px solid #000000;
+		}
+
+		header nav{
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			max-width: 80%;
+			height: 8vh;
+		}
+
+		header nav ul{
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		header #menu{
+			height: 8vh;
+		}
+
+		header nav a{
+			text-decoration: none;
+			padding: 0 1vw;
+			color: #000000;
+			font-size: 20px;
+		}
+
+		header nav a:hover{
+			color: #e4332d;
+		}
+	
+		header nav .titre_menu{
+			display: flex;
+			align-items: center;
+			height: 8vh;
+		}
+
+		header nav .deroulant{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		header nav .sous{
+			display: none;
+			background-color: #FFFFFF;
+			position: absolute;
+			z-index: 1000;
+			margin-top: 11.3vh;
+			border-top: 2px solid #000000;
+		}
+
+		header nav ul li:hover .sous{
+			display: block;
+		}
+
+		header nav .sous li{
+			text-align: center;
+		}
+
+		header nav .sous a{
+			padding: 10px;
+		}
+
+		header nav .sous_deroulant{
+			display: flex;
+			justify-content: center;
+		}
+
+		header nav .sous_sous{
+			display: none;
+			background-color: #FFFFFF;
+			position: absolute;
+			z-index: 1000;
+			margin-left: 100%;
+			width: 100%;
+		}
+
+		header nav ul li ul li:hover .sous_sous{
+			display: block;
+		}
+
+		header nav .sous_sous li{
+			padding: 10px 0;
+			text-align: center;
+		}
+
+		header nav .sous_sous a{
+			padding: 10px;
+		}
+
+		header #logo_camara{
+			height: 7vh;
+		}
+
+		header #logo_menu{
+			height: 5vh;
+		}
+
+		header #recherche{
+			display: flex;
+			justify-content: center;
+			width: 25%;
+		}
+
+		header #barre_recherche{
+			width: 85%;
+			height: 4vh;
+			border-top-left-radius: 5vh;
+			border-bottom-left-radius: 5vh;
+			padding: 0 10px;
+			border-bottom: 1px solid #000000;
+			border-top: 1px solid #000000;
+			border-left: 1px solid #000000;
+			border-right: 0px;
+			font-family: GeosansLight;
+			font-size: 20px;
+		}
+
+		header #bouton_recherche{
+			width: 4vh;
+			height: 4vh;
+			border-top-right-radius: 5vh;
+			border-bottom-right-radius: 5vh;
+			border-bottom: 1px solid #e4332d;
+			border-top: 1px solid #e4332d;
+			border-right: 1px solid #e4332d;
+			border-left: 0px;
+			background-color: #e4332d;
+		}
+
+		header #img_bouton_recherche{
+			width: 100%;
+		}
+
+	/* FOOTER */
+
+		footer{
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+			height: 12vh;
+			background-color: #000000;
+		}
+
+/* ACCUEIL */
+
+	#img_accueil{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		height: 88vh;
+		background-image: url("Image/IMG_9640.JPG");
+		background-position: bottom;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+
+	#message_accueil{
+		color: #FFFFFF;
+		font-family: Roboto;
+		font-size: 60px;
+		text-shadow: 0 0 10px #000000;
+	}
+
+/* BOUTIQUE */
+
+	#produits{
+		width: 95%;
+		padding-bottom: 20px;
+	}
+
+	#produits h1{
+		padding: 20px 0;
+		font-size: 35px;
+	}
+
+	#produits_list{
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
+		width: 100%;
+	}
+
+	#produits_list_colonne{
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+		padding: 2%;
+		width: 21%;
+		min-height: 55vh;
+		min-width: 200px;
+		background-color: #EFEFEF;
+	}
+
+	#produits_list_colonne form{
+		width: 100%;
+	}
+
+	#produits_list_colonne .img_produit{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 30vh;
+	}
+
+	#produits_list_colonne .img_produit_img{
+		max-width: 100%;
+		max-height: 30vh;
+	}
+
+	#produits_list_colonne .text_produit{
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		width: 100%;
+		padding: 20px 0 15px;
+		font-family: Roboto;
+	}
+
+	#produits_list_colonne .text_produit h2{
+		padding: 10px 0;
+	}
+
+	#produits_list_colonne .form_ajout_panier{
+		width: 100%;
+	}
+
+	 .ajout_panier{
+		width: 100%;
+		background-color: #6A963B;
+		color: #FFFFFF;
+		border: 0;
+		padding: 8px;
+		border-radius: 20px;
+		font-size: 15px;
+		cursor: pointer;
+		text-align: center;
+	}
+
+/* PRODUIT */
+
+	#fiche_produit{
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: flex-start;
+		width: 95%;
+		padding-bottom: 20px;
+		flex-wrap: wrap;
+	}
+
+	#titre_produit{
+		display: flex;
+		width: 100%;
+		padding: 20px 0;
+		font-size: 35px;
+	}
+
+	#block_haut_produit{
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		width: 100%;
+	}
+
+	#block_image_produit{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 56%;
+		max-height: 50vh;
+		padding: 2%;
+	}
+
+	#image_produit{
+		max-width: 80%;
+		max-height: 48vh;
+	}
+
+	#prix_produit{
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+		width: 32%;
+		height: 150px;
+		padding: 4%;
+		background-color: #EFEFEF;
+	}
+
+	#block_description_produit{
+		display: flex;
+		width: 96%;
+		padding: 2%;
+		background-color: #EFEFEF;
+	}
+
+/* PANIER */
+
+	#panier{
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+		margin-bottom: 20px;
+	}
+
+	h1{
+		padding: 20px 0;
+		font-size: 35px;
+	}
+
+	#panier_produit{
+		display: flex;
+		flex-direction: column;
+		width: 70%;
+	}
+
+	.aff_produit_panier{
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		width: 96%;
+		padding: 2%;
+		background-color: #EFEFEF;
+	}
+
+	.panier_colonne{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		width: 19%;
+	}
+
+	.panier_colonne_suppr{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 5%;
+	}
+
+	.produit_img{
+		max-width: 100%;
+		max-height: 15vh;
+	}
+
+	.suppr_img{
+		width: 40px;
+	}
+
+	/* COMMANDE */
+
+		#commande{
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			padding: 2%;
+			width: 25%;
+			height: 150px;
+			background-color: #EFEFEF;
+		}
+
+/* CONTACT */
+
+	#contact{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		max-width: 100%;
+		height: 92vh;
+		background-image: url("Image/IMG_9640.JPG");
+		background-position: bottom;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+
+	#contact_section_blanc{
+		background-color: #FFFFFF;
+		width: 50%;
+		text-align: center;
+		padding: 20px 10px;
+	}
+	
+	#contact fieldset{
+		border: 1px solid #000000;
+		margin: 10px;
+		width: 90%;
+	}
+	
+	#contact legend{
+		font-size: 2vw;
+		font-family: GeosansLight;
+		color: #000000;
+	}
+
+	#contact #contact_form{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items:center;
+		width: 100%;
+	}
+
+	#contact ::placeholder{
+		color: #000000;
+	}
+
+	#contact input[type=text], #contact textarea{
+		padding: 10px;
+		width: 90%;
+		margin: 10px 0;
+		font-size: 18px;
+		color: #000000;
+		background-color: #FFFFFF;
+		border: 1px solid #000000;
+		font-family: GeosansLight;
+	}
+
+	#contact textarea{
+		height: 15vh;
+		resize: none;
+	}
+
+	#contact #button{
+		padding: 10px;
+		background-color: #000000;
+		font-size: 20px;
+		width: 90%;
+		margin: 10px 0;
+		color: #FFFFFF;
+		font-family: GeosansLight;
+		box-sizing: content-box;
+		cursor: pointer;
+		border: 0;
+		border-radius: 40px;
+	}
+
+/* ADMIN */
+
+	#admin{
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		width: 100%;
+		margin-bottom: 10px;
+	}
+
+	#titre_admin{
+		display: flex;
+		width: 100%;
+		padding: 20px 0 10px;
+		font-size: 35px;
+	}
+
+	.block_admin{
+		display: flex;
+		flex-direction: column;
+		width: 32%;
+		height: 50vh;
+		margin: 10px 0;
+		border: 1px solid #000000;
+		border-radius: 10px;
+	}
+
+	.block_admin h2{
+		background-color: #e4332d;
+		padding: 10px;
+		border-radius: 10px 10px 0 0;
+		color: #FFFFFF;
+	}
+
+	.admin_affichage{
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		overflow: auto;
+	}
+
+	.admin_affichage_list{
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		padding: 10px;
+	}
+
+	.admin_affichage_list:hover{
+		background-color: #DBDBDB;
+	}
+
+	.admin_affichage_list .name{
+		display: flex;
+		flex-wrap: wrap;
+		width: 50%;
+	}
+
+	.admin_affichage_list .sous_name{
+		display: flex;
+		flex-wrap: wrap;
+		width: 50%;
+		padding-left: 5%;
+	}
+
+	.suppr_img{
+		width: 20px;
+		height: 20px;
+		margin: 0;
+		padding: 0;
+		border: 0;
+		background: transparent url("Image/Panier/del.png");
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		text-indent: -1000em;
+		cursor: pointer;
+	}
+
+	.modif_img{
+		width: 20px;
+		height: 20px;
+		margin: 0;
+		padding: 0;
+		border: 0;
+		background: transparent url("Image/Logo/modif.png");
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		text-indent: -1000em;
+		cursor: pointer;
+	}
+
+	/* FAVORIS */
+
+		.liste_produit_favoris{
+			width: 68%;
+			height: 20px;
+			border: solid 1px #000000;
+			background-color: #FFFFFF;
+		}
+
+		.bouton_favoris{
+			height: 22px;
+			border-radius: 20px;
+			background-color: #e4332d;
+			color: #FFFFFF;
+			cursor: pointer;
+		}
+
+	/* CATEGORIES */
+
+		#admin_ajout_categorie{
+			padding: 10px;
+		}
+
+		#admin_ajout_categorie form{
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+		}
+
+		#admin_ajout_categorie form #name_categorie{
+			width: 30%;
+			height: 20px;
+			border-radius: 20px;
+			padding: 0 5px;
+			border: solid 1px #000000;
+		}
+	
+		#admin_ajout_categorie form #select_categorie{
+			width: 30%;
+			height: 22px;
+			border: solid 1px #000000;
+			background-color: #FFFFFF;
+		}
+
+		#admin_ajout_categorie form #bouton_categorie{
+			width: 30%;
+			height: 22px;
+			border-radius: 20px;
+			background-color: #e4332d;
+			color: #FFFFFF;
+			cursor: pointer;
+		}
+
+	/* PRODUITS */
+
+		#admin_ajout_produit{
+			display: flex;
+			justify-content: center;
+			width: 100%;
+			padding: 10px 0;
+		}
+
+		#admin_ajout_produit #admin_bouton_ajout_produit{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 95%;
+			height: 22px;
+			border-radius: 20px;
+			font-size: 15px;
+			background-color: #e4332d;
+			color: #FFFFFF;
+		}
+
+		/* MODIFICATION PRODUIT */
+
+			#modif_produit form{
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				width: 100%;
+			}
+
+			#modif_produit_section_img{
+				display: flex;
+				justify-content: center;
+				max-width: 40%;
+				max-height: 40vh;
+			}
+
+			#modif_produit_img_label{
+				cursor: pointer;
+				max-width: 100%;
+				max-height: 40vh;
+			}
+
+			#modif_produit_img{
+				max-width: 100%;
+				max-height: 40vh;
+			}
+
+			#modif_produit_img_file{
+				display: none;
+			}
