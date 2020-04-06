@@ -21,32 +21,25 @@
 			<?php include "header.php"; ?>
 		</header>
 		
-		<main id="inscription">
-			<div id="inscription_form">
-				<div class="wrapper_2">
-					<h3>Inscription</h3>
-					<form class="profil" method="post" enctype="multipart/form-data">
-						<div class="inscription_form_partie">
-							<input class="e_button" type="text" name="login" placeholder="LOGIN"/>
-							<input class="e_button" type="password" name="passe" placeholder="MOT DE PASSE"/>
-                        </div>
-                        <div class="inscription_form_partie">
-                            <input class="e_button" type="text" name="nom" placeholder="NOM"/>
-                            <input class="e_button" type="password" name="passe2" placeholder="CONFIRMATION MOT DE PASSE"/>
-						</div>
-						<div class="inscription_form_partie">
-                            <input class="e_button" type="mail" name="email" placeholder="E-MAIL"/>
-                            <input class="e_button" type="text" name="prenom" placeholder="PRENOM"/>
-							
-						</div>
-						<input class="e_button" type="submit" value="INSCRIPTION" name="inscription"/>
-						<input type="submit" class="e_button" value="CONNEXION" name="connexion"/>
-						<?php
-							$var->inscription();
-						?>
-					</form>
-				</div>
-			</div>
+		<main id="co_ins">
+			<section id="co_ins_section_blanc">
+				<form method="post">
+					<fieldset>
+						<legend>INSCRIPTION</legend>
+						<input type="text" class="co_ins_input" name="login" placeholder="LOGIN"/>
+						<input type="mail" class="co_ins_input" name="email" placeholder="E-MAIL"/>
+						<input type="text" class="co_ins_input" name="prenom" placeholder="PRENOM"/>
+						<input type="text" class="co_ins_input" name="nom" placeholder="NOM"/>
+						<input type="password" class="co_ins_input" name="passe" placeholder="MOT DE PASSE"/>
+						<input type="password" class="co_ins_input" name="passe2" placeholder="CONFIRMATION MOT DE PASSE"/>
+						<input type="submit" class="co_ins_input" value="INSCRIPTION" name="inscription"/>
+						<input type="submit" class="co_ins_input" value="CONNEXION" name="connexion"/>
+					</fieldset>
+				</form>
+				<?php
+					$var->inscription();
+				?>
+			</section>
 		</main>
 			
 		<footer>
