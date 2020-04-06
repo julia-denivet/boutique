@@ -26,7 +26,7 @@
 	</div>
 
 	<div class="panier_colonne_suppr">
-		<a href="panier.php?suppr=<?php echo $data['id'] ;?>"><img class="suppr_img" src="Image/Panier/del.png"></a>
+		<a href="panier.php?suppr=<?php echo $data['id'] ;?>"><img class="suppr_img" src="Image/Logo/del.png"></a>
 		<?php
 			if(isset($_GET['suppr']))
 			{

@@ -75,7 +75,7 @@
 					<form method="post">
 						<input type="hidden" name="id_produit" value="', $data['id'] ,'"/>
 						<input type="hidden" name="nom_produit" value="', $data['nom'] ,'"/>
-						<input type="submit" name="suppr_produit" class="suppr_img">
+						<input type="submit" name="suppr_produit" class="admin_suppr_img">
 					</form>
 				</section>
 				';
@@ -248,7 +248,7 @@
 					<h4 class="name"><a href="../boutique.php?id=', $data['id'] ,'">', $data['name'] ,'</a></h4>
 					<form method="post">
 						<input type="hidden" name="id_cat" value="', $data['id'] ,'"/>
-						<input type="submit" name="suppr_categorie" class="suppr_img">
+						<input type="submit" name="suppr_categorie" class="admin_suppr_img">
 					</form>
 				</section>
 				';
@@ -263,7 +263,7 @@
 						<h4 class="sous_name"><a href="../boutique.php?id=', $data2['id'] ,'">', $data2['name'] ,'</a></h4>
 						<form method="post">
 							<input type="hidden" name="id_cat" value="', $data2['id'] ,'"/>
-							<input type="submit" name="suppr_categorie" class="suppr_img">
+							<input type="submit" name="suppr_categorie" class="admin_suppr_img">
 						</form>
 					</section>
 					';
@@ -383,7 +383,7 @@
 					</form>
 					<form method="post">
 						<input type="hidden" name="id_utilisateur" value="', $data['id'] ,'"/>
-						<input type="submit" name="suppr_utilisateur" class="suppr_img">
+						<input type="submit" name="suppr_utilisateur" class="admin_suppr_img">
 					</form>
 				</section>
 				';
