@@ -6,7 +6,10 @@
 	}
 	require "fonctions/function_panier.php";
 	$var = new panier;
-	$var->ajout_article($_POST['id_produit'], $_POST['quantite'], $_SESSION['id']);
+	if(isset($_POST['ajout_panier']))
+	{
+		$var->ajout_article($_POST['id_produit'], $_POST['quantite'], $_SESSION['id']);
+	}
 ?>
 <!doctype html>
 <html>

@@ -12,7 +12,7 @@
 				<option value="5">5</option>
 			</select>
 			<input type="hidden" name="id_produit" value="<?php echo $data["id"]; ?>"/>
-			<input type="submit" value="Ajouter au panier !" class='ajout_panier'/>
+			<input type="submit" name="ajout_panier" value="Ajouter au panier !" class='ajout_panier'/>
 		</form>
 <?php
 	}
