@@ -11,7 +11,12 @@
 		</select>
 		<input type="submit" id="bouton_categorie" name="ajout_categorie" value="Ajouter catégorie">
 	</form>
-	<?php $var->ajout_categorie($_POST['ajout_categorie'], $_POST['name_categorie'], $_POST['categorie']); ?>
+	<?php 
+		if(isset($_POST['ajout_categorie']))
+		{
+			$var->ajout_categorie($_POST['ajout_categorie'], $_POST['name_categorie'], $_POST['categorie']);
+		}
+	?>
 </section>
 
 <section class="admin_affichage">

@@ -21,21 +21,21 @@
 			<?php include "header.php"; ?>
 		</header>
 			
-		<main id="connexion">
-			<div id="connexion_form">
-				<div class="wrapper_2">
-					<h3>Connexion</h3>
-					<form class="profil" method="post">
-						<input type="text" class="e_button" name="login" placeholder="LOGIN"/>
-						<input type="password" class="e_button" name="passe" placeholder="MOT DE PASSE"/>
-						<input type="submit" class="e_button" value="CONNEXION" name="Connexion"/>
-						<input type="submit" class="e_button" value="INSCRIPTION" name="inscription" />
-						<?php
-							$var->connexion();
-						?>
-					</form>
-				</div>
-			</div>
+		<main id="co_ins">
+			<section id="co_ins_section_blanc">
+				<form method="post">
+					<fieldset>
+						<legend>INSCRIPTION</legend>
+						<input type="text" class="co_ins_input" name="login" placeholder="LOGIN"/>
+						<input type="password" class="co_ins_input" name="passe" placeholder="MOT DE PASSE"/>
+						<input type="submit" class="co_ins_input" value="CONNEXION" name="Connexion"/>
+						<input type="submit" class="co_ins_input" value="INSCRIPTION" name="inscription" />
+					</fieldset>
+				</form>
+				<?php
+					$var->connexion();
+				?>
+			</section>
 		</main>
 			
 		<footer>

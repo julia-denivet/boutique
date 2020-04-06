@@ -377,6 +377,59 @@
 		background-color: #EFEFEF;
 	}
 
+/* CONNEXION-INSCRIPTION */
+
+	#co_ins{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		max-width: 100%;
+		height: 92vh;
+		background-image: url(Image/IMG_9640.JPG);
+		background-position: bottom;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+
+	#co_ins_section_blanc{
+		background-color: #FFFFFF;
+		width: 50%;
+		text-align: center;
+		padding: 20px 10px;
+	}
+
+	#co_ins form{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+	}
+
+	#co_ins fieldset{
+		border: 1px solid #000000;
+		margin: 10px;
+		width: 90%;
+	}
+
+	#co_ins legend{
+		font-size: 2vw;
+		font-family: GeosansLight;
+		color: #000000;
+	}
+
+	#co_ins .co_ins_input{
+		padding: 10px;
+		width: 90%;
+		margin: 10px 0;
+		font-size: 18px;
+		color: #000000;
+		background-color: #FFFFFF;
+		border: 1px solid #000000;
+		font-family: GeosansLight;
+	}
+
 /* PANIER */
 
 	#panier{

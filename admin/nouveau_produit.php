@@ -36,7 +36,12 @@
 				</div>
 				<input type="submit" name="nouveau_produit" value="Ajouter"/>
 			</form>
-			<?php $var->ajouter_produit($_POST['nouveau_produit'], $_POST['nom'], $_POST['description'], $_POST['sous_categorie'], $_POST['prix_ht'], $_POST['prix_ttc'], $_FILES['image']['tmp_name'], $_FILES['image']['type'], $_FILES['image']['name']); ?>
+			<?php
+				if(isset($_POST['nouveau_produit']))
+				{
+					$var->ajouter_produit($_POST['nouveau_produit'], $_POST['nom'], $_POST['description'], $_POST['sous_categorie'], $_POST['prix_ht'], $_POST['prix_ttc'], $_FILES['image']['tmp_name'], $_FILES['image']['type'], $_FILES['image']['name']);
+				}
+			?>
 		</main>
 		
 		<footer>
