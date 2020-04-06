@@ -38,7 +38,13 @@
 				<input type="hidden" name="id_produit" value="<?php echo $_GET['id']; ?>"/>
 				<input type="submit" name="modifier_produit" value="Modifier"/>
 			</form>
-			<?php $var->modif_produit($_POST['id_produit'], $_POST['modifier_produit'], $_POST['nom'], $_POST['description'], $_POST['sous_categorie'], $_POST['prix_ht'], $_POST['prix_ttc'], $_FILES['image']['tmp_name'], $_FILES['image']['type'], $_FILES['image']['name']); ?>
+			<?php
+				if(isset($_POST['modifier_produit']))
+				{
+					$var->modif_produit($_POST['id_produit'], $_POST['modifier_produit'], $_POST['nom'], $_POST['description'], $_POST['sous_categorie'], $_POST['prix_ht'], $_POST['prix_ttc'], $_FILES['image']['tmp_name'], $_FILES['image']['type'], $_FILES['image']['name']);
+				}
+			
+			?>
 		</main>
 		
 		<footer>

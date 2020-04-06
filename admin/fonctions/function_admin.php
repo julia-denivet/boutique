@@ -42,7 +42,10 @@
 					</form>
 				</section>
 				';
-				$this->modifier_favoris($_POST['liste_produit'], $_POST['id_favoris'], $_POST['modif_favoris']);
+				if(isset($_POST['modif_favoris']))
+				{
+					$this->modifier_favoris($_POST['liste_produit'], $_POST['id_favoris'], $_POST['modif_favoris']);
+				}
 			}
 		}
 		
@@ -80,7 +83,10 @@
 				</section>
 				';
 			}
-			$this->suppr_produit($_POST['id_produit'], $_POST['nom_produit'], $_POST['suppr_produit']);
+			if(isset($_POST['suppr_produit']))
+			{
+				$this->suppr_produit($_POST['id_produit'], $_POST['nom_produit'], $_POST['suppr_produit']);
+			}
 		}
 		
 		public function data_produit($id)
@@ -269,7 +275,10 @@
 					';
 				}
 			}
-			$this->suppr_categorie($_POST['id_cat'], $_POST['suppr_categorie']);
+			if(isset($_POST['suppr_categorie']))
+			{
+				$this->suppr_categorie($_POST['id_cat'], $_POST['suppr_categorie']);
+			}
 		}
 		
 		public function suppr_categorie($id_categorie, $suppr_categorie)
@@ -297,7 +306,6 @@
 					{
 						$requete = "INSERT INTO categorie (name, id_parent) VALUES ('$name_categorie', $categorie)";
 						$sql = mysqli_query($connexion, $requete);
-						header('Location: admin.php');
 					}
 					else
 					{
@@ -388,8 +396,15 @@
 				</section>
 				';
 			}
-			$this->modifier_utilisateur($_POST['liste_droits'], $_POST['id_utilisateur'], $_POST['modif_droits']);
-			$this->suppr_utilisateur($_POST['id_utilisateur'], $_POST['suppr_utilisateur']);
+			if(isset($_POST['modif_droits']))
+			{
+				$this->modifier_utilisateur($_POST['liste_droits'], $_POST['id_utilisateur'], $_POST['modif_droits']);
+			}
+			
+			if(isset($_POST['suppr_utilisateur']))
+			{
+				$this->suppr_utilisateur($_POST['id_utilisateur'], $_POST['suppr_utilisateur']);
+			}
 		}
 		
 		public function modifier_utilisateur($liste_droits, $id_utilisateur, $modif_droits)
