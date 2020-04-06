@@ -585,13 +585,13 @@
 		padding-left: 5%;
 	}
 
-	.suppr_img{
+	.admin_suppr_img{
 		width: 20px;
 		height: 20px;
 		margin: 0;
 		padding: 0;
 		border: 0;
-		background: transparent url("Image/Panier/del.png");
+		background: transparent url("Image/Logo/del.png");
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: cover;
