@@ -37,9 +37,9 @@
 				
 				if($_POST['passe'] != $data['password'])
 				{
-					$mpd = password_hash($_POST['passe'], PASSWORD_DEFAULT);
-					$sql = "UPDATE utilisateurs SET password ='".$_POST['passe']."' WHERE login = '".$_SESSION['login']."'";
-					mysqli_query($connexion, $sql);
+					$passe = password_hash($_POST['passe'], PASSWORD_DEFAULT);
+				    $sql = "UPDATE utilisateurs SET password = '$passe' WHERE login = '".$_SESSION['login']."'";
+				    mysqli_query($connexion, $sql);
 					echo "Vos données bien été modifié !";
 
                 }
