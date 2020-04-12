@@ -32,8 +32,8 @@
 						<input type="text" class="co_ins_input" name="nom" placeholder="NOM"/>
 						<input type="password" class="co_ins_input" name="passe" placeholder="MOT DE PASSE"/>
 						<input type="password" class="co_ins_input" name="passe2" placeholder="CONFIRMATION MOT DE PASSE"/>
-						<input type="submit" class="co_ins_input" value="INSCRIPTION" name="inscription"/>
-						<input type="submit" class="co_ins_input" value="CONNEXION" name="connexion"/>
+						<input type="submit" class="co_ins_input_bouton" value="INSCRIPTION" name="inscription"/>
+						<input type="submit" class="co_ins_input_bouton" value="CONNEXION" name="connexion"/>
 					</fieldset>
 				</form>
 				<?php

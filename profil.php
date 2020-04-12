@@ -7,57 +7,47 @@
 	}
     require "fonctions/function_profil.php";
 	$var = new profile;
-
-	$connexion = mysqli_connect('localhost','root','','boutique');
-	$sql = "SELECT * FROM utilisateurs WHERE login = '".$_SESSION['login']."'";
-	$query = mysqli_query($connexion, $sql);
-	
-	
-
+	$query = $var->donnees_profil();
 ?>
 <html>
     <head>
-
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="style.css"/>
         <title>Profil - Boutique</title>
-        
     </head>
+	
     <body>
         <header>
             <?php include "header.php"; ?>
 		</header>
+		
 		<main>
-			<div>
-				<h3>Profil</h3>
-				<form  method="post">
-					<?php 
-						while ($data = mysqli_fetch_assoc($query))
-							{ 
-					?>
-					<div>
-						<input type="text" name="login" placeholder="LOGIN" value="<?php echo $data['login'] ?> "/>
-						<input type="password" name="passe" placeholder="MOT DE PASSE" value="<?php echo $data['password'] ?>"/>
+			<h1 class="titre">ESPACE PROFIL</h1>
+			<section id="profil">
+				<section class="block_profil">
+					<h1>Profil</h1>
+					<div class="block_profil_contenu">
+						<?php include 'script/block_modif_profil.php'; ?>
 					</div>
-					<div>
-						<input type="text" name="nom" placeholder="NOM" value="<?php echo $data['nom'] ?>" >
-						<input type="password" name="passe2" placeholder="CONFIRMATION MOT DE PASSE" value="<?php echo $data['password'] ?>"/>
+				</section>
+
+				<section class="block_profil">
+					<h1>Adresses</h1>
+					<div class="block_profil_contenu">
+						<?php include 'script/block_modif_adresse.php'; ?>
+						<?php include 'script/block_ajout_adresse.php'; ?>
 					</div>
-					<div>
-						<input type="mail" name="email" placeholder="E-MAIL" value="<?php echo $data['email'] ?>"/>
-						<input type="text" name="prenom" placeholder="PRENOM" value="<?php echo $data['prenom'] ?>"/>
-									
+				</section>
+				
+				<section class="block_profil">
+					<h1>Commandes</h1>
+					<div class="block_profil_contenu">
+						<?php include 'script/block_affichage_commande.php'; ?>
 					</div>
-						<input type="submit" class="e_button" value="MODIFIER" name="Modifier"/>
-							<?php
-								$var->profil();
-							?>
-				</form>
-				<?php
-							}
-				?>
-			</div>
+				</section>
+			</section>
 		</main>
+		
     	<footer>
 			<?php include "footer.php"; ?>
 		</footer>

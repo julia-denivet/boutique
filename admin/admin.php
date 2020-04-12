@@ -21,7 +21,7 @@
 		</header>
 		
 		<main>
-			<h1 id="titre_admin">ADMINISTRATEUR</h1>
+			<h1 class="titre_admin">ESPACE ADMINISTRATEUR</h1>
 			<section id="admin">
 				<section class="block_admin"><?php include "script/block_gestion_favoris.php"; ?></section>
 				<section class="block_admin"><?php include "script/block_gestion_produit.php"; ?></section>

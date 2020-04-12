@@ -47,29 +47,38 @@
 			return $data;
 		}
 		
-		public function commentaire()
+		public function ajout_commentaire_produit($id)
 		{
 			echo'
 			<form method="post">
-				<input type="text" name="message" id="ajout_message_texte" placeholder="ÉCRIVEZ VOTRE MESSAGE"/>
-				<button name="submit" type="submit" id="ajout_message_bouton">
-					<img id="ajout_message_bouton_img" src="Images/pngtree-paper-plane-icon-vector-send-message-solid-logo-illustration-pictogram-isolated-image_315678.png"/>
-				</button>
+				<textarea name="commentaire" placeholder="ÉCRIVEZ VOTRE MESSAGE"></textarea>
+				<input type="submit" name="ajout_commentaire" value="AJOUTER"/>
 			</form>';
 			
-			if(isset($_REQUEST['submit']))
+			if(isset($_POST['ajout_commentaire']))
 			{
 				$connexion = mysqli_connect($this->host, $this->username, $this->password, $this->db);
 				$utilisateur = $_SESSION['id'];
-				$commentaire = $_POST['message'];
-				$commentaire2 = addslashes($commentaire);
+				$commentaire = $_POST['commentaire'];
+				$commentaire2 = htmlentities($commentaire, ENT_QUOTES);
 				if(!empty($commentaire))
 				{
-					$sql= "INSERT INTO commentaire (commentaire, id_utilisateur, date) VALUES ('$commentaire2', '$utilisateur', NOW())";
+					$sql = "INSERT INTO commentaire (commentaire, id_article, id_utilisateur, date) VALUES ('$commentaire2', '$id', '$utilisateur', NOW())";
 					mysqli_query($connexion, $sql);
-					mysqli_close($connexion);
-					echo "Votre commentaire à bien été publié";
+					echo "<meta http-equiv='refresh' content='0 ;URL='''>";
 				}
+			}
+		}
+		
+		public function affichage_commentaire_produit($id)
+		{
+			$connexion = mysqli_connect($this->host, $this->username, $this->password, $this->db);
+			$sql = "SELECT * FROM commentaire WHERE id_article = '".$id."' ORDER BY date DESC";
+			$query = mysqli_query($connexion, $sql);
+			
+			while($data = mysqli_fetch_assoc($query))
+			{
+				include "script/block_commentaire.php";
 			}
 		}
 	}

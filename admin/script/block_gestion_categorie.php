@@ -2,7 +2,7 @@
 
 <section id="admin_ajout_categorie">
 	<form method="post">
-		<input type="text" id="name_categorie" name="name_categorie" placeholder="CATÉGORIE"/>
+		<input type="text" id="name_categorie" name="name_categorie" placeholder="NOM CATÉGORIE"/>
 		<select id="select_categorie" name="categorie">
 			<option value="0">Catégorie</option>
 			<optgroup label="Catégorie">

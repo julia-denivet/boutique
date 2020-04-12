@@ -28,8 +28,8 @@
 						<legend>INSCRIPTION</legend>
 						<input type="text" class="co_ins_input" name="login" placeholder="LOGIN"/>
 						<input type="password" class="co_ins_input" name="passe" placeholder="MOT DE PASSE"/>
-						<input type="submit" class="co_ins_input" value="CONNEXION" name="Connexion"/>
-						<input type="submit" class="co_ins_input" value="INSCRIPTION" name="inscription" />
+						<input type="submit" class="co_ins_input_bouton" value="CONNEXION" name="Connexion"/>
+						<input type="submit" class="co_ins_input_bouton" value="INSCRIPTION" name="inscription" />
 					</fieldset>
 				</form>
 				<?php

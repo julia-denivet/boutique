@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le :  lun. 06 avr. 2020 à 12:32
+-- Généré le :  Dim 12 avr. 2020 à 23:31
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.4.2
 
@@ -15,6 +15,32 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `boutique` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `boutique`;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `adresse`
+--
+
+CREATE TABLE `adresse` (
+  `id` int(11) NOT NULL,
+  `id_utilisateur` int(11) NOT NULL,
+  `nom` varchar(255) NOT NULL,
+  `prenom` varchar(255) NOT NULL,
+  `adresse` varchar(255) NOT NULL,
+  `comp_adresse` varchar(255) NOT NULL,
+  `code_postal` int(11) NOT NULL,
+  `ville` varchar(255) NOT NULL,
+  `pays` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `adresse`
+--
+
+INSERT INTO `adresse` (`id`, `id_utilisateur`, `nom`, `prenom`, `adresse`, `comp_adresse`, `code_postal`, `ville`, `pays`) VALUES
+(1, 6, 'Van Der MEIJDEN', 'Luc', '8 bd vert plan', '', 13009, 'Marseille', 'France'),
+(7, 6, 'Van Der MEIJDEN', 'Luc', '8 bd vert plan', '', 13009, 'Marseille', 'France');
 
 -- --------------------------------------------------------
 
@@ -42,7 +68,58 @@ INSERT INTO `categorie` (`id`, `name`, `id_parent`) VALUES
 (13, 'Canon', 1),
 (29, 'Peak Design', 3),
 (30, 'Velbon', 3),
-(31, 'Canon', 3);
+(32, 'Canon', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `commande`
+--
+
+CREATE TABLE `commande` (
+  `id` int(11) NOT NULL,
+  `id_utilisateur` int(11) NOT NULL,
+  `numero_commande` varchar(255) NOT NULL,
+  `date` datetime NOT NULL,
+  `prix` varchar(255) NOT NULL,
+  `adresse_facturation` varchar(255) NOT NULL,
+  `adresse_livraison` varchar(255) NOT NULL,
+  `paiement` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `commande`
+--
+
+INSERT INTO `commande` (`id`, `id_utilisateur`, `numero_commande`, `date`, `prix`, `adresse_facturation`, `adresse_livraison`, `paiement`) VALUES
+(8, 6, '6127222701', '2020-04-13 00:27:01', '21099,93', 'Van Der MEIJDEN\nLuc\n8 bd vert plan\n\n13009 Marseille\nFrance', 'Van Der MEIJDEN\nLuc\n8 bd vert plan\n\n13009 Marseille\nFrance', 'Carte Bleue'),
+(9, 6, '6127231541', '2020-04-13 01:15:41', '21099,93', 'Van Der MEIJDEN\nLuc\n8 bd vert plan\n\n13009 Marseille\nFrance', 'Van Der MEIJDEN\nLuc\n8 bd vert plan\n\n13009 Marseille\nFrance', 'Paypal'),
+(10, 6, '6127232905', '2020-04-13 01:29:05', '7299,99', 'Van Der MEIJDEN\nLuc\n8 bd vert plan\n\n13009 Marseille\nFrance', 'Van Der MEIJDEN\nLuc\n8 bd vert plan\n\n13009 Marseille\nFrance', 'Carte Bleue');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `commande_produit`
+--
+
+CREATE TABLE `commande_produit` (
+  `id` int(11) NOT NULL,
+  `numero_commande` varchar(255) NOT NULL,
+  `nom` varchar(255) NOT NULL,
+  `prix` varchar(11) NOT NULL,
+  `quantite` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `commande_produit`
+--
+
+INSERT INTO `commande_produit` (`id`, `numero_commande`, `nom`, `prix`, `quantite`) VALUES
+(8, '6127222701', 'Canon 7D Mark II', '1299,99', 5),
+(9, '6127222701', 'Canon EOS 1D X  Mark III', '7299,99', 2),
+(10, '6127231541', 'Canon 7D Mark II', '1299,99', 5),
+(11, '6127231541', 'Canon EOS 1D X  Mark III', '7299,99', 2),
+(12, '6127232905', 'Canon EOS 1D X  Mark III', '7299,99', 1);
 
 -- --------------------------------------------------------
 
@@ -55,8 +132,20 @@ CREATE TABLE `commentaire` (
   `commentaire` longtext NOT NULL,
   `id_article` int(11) NOT NULL,
   `id_utilisateur` int(11) NOT NULL,
-  `date` date NOT NULL
+  `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `commentaire`
+--
+
+INSERT INTO `commentaire` (`id`, `commentaire`, `id_article`, `id_utilisateur`, `date`) VALUES
+(1, 'ffsgfdgfsgf', 87, 6, '2020-04-12 00:15:43'),
+(2, 'ffsgfdgfsgf', 87, 6, '2020-04-12 00:17:24'),
+(3, 'cdcdscds', 88, 6, '2020-04-12 02:31:22'),
+(4, 'qxsqxs', 88, 6, '2020-04-12 02:33:13'),
+(5, 'cqcsq', 88, 6, '2020-04-12 02:34:11'),
+(6, 'dscdds', 87, 6, '2020-04-12 03:07:08');
 
 -- --------------------------------------------------------
 
@@ -96,7 +185,7 @@ CREATE TABLE `favoris` (
 INSERT INTO `favoris` (`id`, `id_produit`) VALUES
 (1, 88),
 (2, 88),
-(3, 89),
+(3, 87),
 (4, 87);
 
 -- --------------------------------------------------------
@@ -112,17 +201,6 @@ CREATE TABLE `panier` (
   `quantite` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Déchargement des données de la table `panier`
---
-
-INSERT INTO `panier` (`id`, `id_produit`, `id_utilisateur`, `quantite`) VALUES
-(63, 57, 6, 1),
-(62, 50, 6, 1),
-(61, 33, 6, 1),
-(75, 86, 6, 1),
-(76, 84, 6, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -135,6 +213,7 @@ CREATE TABLE `produit` (
   `description` longtext NOT NULL,
   `prix_ht` varchar(255) NOT NULL,
   `prix_ttc` varchar(255) NOT NULL,
+  `stock` int(11) NOT NULL,
   `img_folder` varchar(255) NOT NULL,
   `img` varchar(255) NOT NULL,
   `id_categorie` int(11) NOT NULL,
@@ -145,10 +224,9 @@ CREATE TABLE `produit` (
 -- Déchargement des données de la table `produit`
 --
 
-INSERT INTO `produit` (`id`, `nom`, `description`, `prix_ht`, `prix_ttc`, `img_folder`, `img`, `id_categorie`, `id_sous_categorie`) VALUES
-(88, 'Canon EOS 1D X  Mark III', 'La vie est ponctu&eacute;e d&#039;instants uniques. Immortalisez-les avec l&#039;EOS-1D X Mark III et racontez votre histoire en images au monde entier.<br />\r\n<br />\r\nLa photographie sans limites.<br />\r\n<br />\r\nLorsque les conditions sont difficiles, que la lumi&egrave;re ambiante est faible et que la pression monte, l&#039;EOS-1D X Mark III vous permet de prendre des photos impressionnantes avant la concurrence. Gr&acirc;ce &agrave; ses performances exceptionnelles en basse lumi&egrave;re, sa technologie d&#039;autofocus &agrave; base de Deep Learning et ses vid&eacute;os en RAW 5,5K, cet appareil est l&#039;outil de cr&eacute;ation ultime.<br />\r\n<br />\r\nUne vitesse et une r&eacute;activit&eacute; in&eacute;gal&eacute;es<br />\r\n<br />\r\nCertaines occasions ne se pr&eacute;sentent qu&#039;une seule fois. Elles disparaissent en une fraction de seconde, &agrave; jamais. Immortalisez-les pour toujours avec l&#039;EOS-1D X Mark III en capturant jusqu&#039;&agrave; 20 im./s.<br />\r\n<br />\r\nUn autofocus incroyablement intelligent<br />\r\n<br />\r\nPrenez des photos d&#039;une clart&eacute; et d&#039;une nettet&eacute; exceptionnelles. Les algorithmes d&#039;autofocus &agrave; base de Deep Learning reconnaissent tous les types de situations et suivent m&ecirc;me les visages cach&eacute;s derri&egrave;re des lunettes ou un casque.<br />\r\n<br />\r\nUne qualit&eacute; remarquable, m&ecirc;me dans des conditions difficiles<br />\r\n<br />\r\nLe processeur DIGIC X et le capteur de 20 millions de pixels sur mesure produisent de magnifiques r&eacute;sultats en basse lumi&egrave;re (ISO 102400 max., extensible jusqu&#039;&agrave; 819 200). L&#039;EOS-1D X Mark III offre &eacute;galement une plage dynamique exceptionnelle.<br />\r\n<br />\r\nL&#039;outil id&eacute;al pour r&eacute;aliser des vid&eacute;os<br />\r\n<br />\r\nL&#039;EOS-1D X Mark III s&#039;adapte &agrave; la plupart des flux de production de vid&eacute;o. Filmez des s&eacute;quences plein format en 4K 60p ou RAW 5,5K afin de multiplier vos possibilit&eacute;s cr&eacute;atives.<br />\r\n<br />\r\nRestez connect&eacute; et comp&eacute;titif<br />\r\n<br />\r\nQue vous travailliez dans un stade dot&eacute; d&#039;une connexion Ethernet ou transmettiez vos photos &agrave; livrer via Wi-Fi, l&#039;EOS-1D X Mark III vous permet de garder une longueur d&#039;avance sur la concurrence.<br />\r\n<br />\r\n<br />\r\nD&eacute;veloppez votre cr&eacute;ativit&eacute;<br />\r\n<br />\r\nReprenant les meilleures qualit&eacute;s de nos reflex num&eacute;riques et de nos appareils photo hybrides, l&#039;EOS-1D X Mark III est con&ccedil;u pour &ecirc;tre r&eacute;sistant, fiable et intuitif, tout en restant le plus discret possible.<br />\r\n<br />\r\n', '5839.99', '7299.99', 'Image/Boutique/Canon EOS 1D X  Mark III', 'eos-1dx-mark-iii.png', 2, 9),
-(87, 'Canon 7D Mark II', 'La qu&ecirc;te du clich&eacute; parfait<br />\r\n<br />\r\nCon&ccedil;u pour les amateurs de vitesse. Soyez le premier &agrave; capturer le moment le plus significatif et &agrave; saisir les instants qui &eacute;chappent aux autres photographes. Que vous soyez branch&eacute; photos ou vid&eacute;os, vous aurez l&#039;occasion d&#039;exprimer votre cr&eacute;ativit&eacute; comme jamais auparavant.<br />\r\n<br />\r\nNe manquez rien de l&#039;action, m&ecirc;me la plus rapide<br />\r\n<br />\r\nImmortalisez le moment de votre choix, m&ecirc;me au c&oelig;ur de l&#039;action<br />\r\n<br />\r\nPrenez jusqu&#039;&agrave; 10 photos par seconde en rafale gr&acirc;ce aux fonctions d&#039;autofocus et d&#039;exposition automatique. La r&eacute;activit&eacute; des commandes de l&#039;appareil photo vous offre la possibilit&eacute; de capturer l&#039;instant souhait&eacute; &agrave; une fraction de seconde pr&egrave;s ; une m&eacute;moire tampon de grande capacit&eacute; vous permet de prendre des photos sans perte de performances.<br />\r\n<br />\r\nCapturez l&#039;instant pr&eacute;sent<br />\r\n<br />\r\nL&#039;EOS 7D Mark II s&#039;appuie sur deux processeurs d&#039;image &laquo; DIGIC 6 &raquo; pour offrir une grande r&eacute;activit&eacute;. Gr&acirc;ce au temps de d&eacute;calage minime lors des prises de vue, vous pouvez immortaliser chaque moment important avec une pr&eacute;cision in&eacute;gal&eacute;e.<br />\r\n<br />\r\nAutofocus large zone &agrave; 65 collimateurs<br />\r\n<br />\r\nPour une mise au point nette au cours de la prise de vue, les 65 collimateurs de l&#039;EOS 7D Mark II suivent les sujets se d&eacute;pla&ccedil;ant rapidement. Chaque collimateur, &laquo; de type crois&eacute; &raquo;*, peut se verrouiller sur un d&eacute;tail horizontal ou vertical avec rapidit&eacute; et pr&eacute;cision. Pour optimiser la prise de vue en basse lumi&egrave;re, le 7D Mark II peut effectuer la mise au point, m&ecirc;me &agrave; la lumi&egrave;re de la lune, lorsque la luminosit&eacute; n&#039;est que de -3 IL (valeurs d&#039;exposition).<br />\r\n<br />\r\n* Le nombre de collimateurs AF, de collimateurs de type crois&eacute; et de doubles collimateurs AF de type crois&eacute; disponibles d&eacute;pend de l&#039;objectif.<br />\r\n<br />\r\nS&eacute;lection du collimateur AF<br />\r\n<br />\r\nUtilisez tous les 65 collimateurs AF ensemble ou regroupez-les en zones amovibles pour cadrer des sujets excentr&eacute;s. Vous pouvez &eacute;galement avoir recours &agrave; un seul collimateur AF pour effectuer une mise au point pr&eacute;cise sur une partie sp&eacute;cifique de la sc&egrave;ne.<br />\r\n<br />\r\nMise au point iTR avanc&eacute;e<br />\r\n<br />\r\nLe syst&egrave;me de mise au point iTR AF de l&#039;EOS 7D Mark II utilise les informations relatives aux couleurs et aux visages pour identifier et suivre les sujets qui se d&eacute;placent &agrave; l&#039;int&eacute;rieur du cadre. La r&eacute;activit&eacute; de l&#039;AF peut &ecirc;tre personnalis&eacute;e &agrave; l&#039;aide d&#039;un outil simple qui ajuste le suivi en fonction de l&#039;environnement de prise de vue et du sujet, de sorte que les autres objets passant bri&egrave;vement devant ce dernier n&#039;affectent pas la mise au point.<br />\r\n<br />\r\nImpressions de qualit&eacute; professionnelle<br />\r\n<br />\r\nQue vous soyez sp&eacute;cialis&eacute; dans les photos d&#039;animaux sauvages, de sports motoris&eacute;s ou d&#039;environnements urbains, le nouveau capteur de 20,2 millions de pixels produit des images que vous pourriez exposer avec fiert&eacute;. M&ecirc;me en basse lumi&egrave;re, l&#039;EOS 7D Mark II r&eacute;alise des photos et des vid&eacute;os riches en d&eacute;tails.', '1039.99', '1299.99', 'Image/Boutique/Canon 7D Mark II', '616N44gQfrL._AC_SX466_.png', 2, 9),
-(89, 'Canon EOS 6D  Mark II', 'Que vous souhaitiez entreprendre des projets plus ambitieux ou faire de la photo votre m&eacute;tier, le EOS 6D Mark II vous offre tout ce dont vous avez besoin pour franchir le cap<br />\r\n<br />\r\nVos prochaines &eacute;tapes cr&eacute;atives<br />\r\n<br />\r\nLes portraitistes adoreront la faible profondeur de champ offerte par le capteur plein format du EOS 6D Mark II, ainsi que sa capacit&eacute; &agrave; capturer les expressions fugaces &agrave; 6,5 im./s. Pour les photos de paysages, le capteur de 26,2 millions de pixels capture des images riches en d&eacute;tails et la plage dynamique produit des photos &agrave; la profondeur et &agrave; la clart&eacute; extr&ecirc;mement r&eacute;alistes.<br />\r\n<br />\r\nUne mise au point pr&eacute;cise pour une nettet&eacute; in&eacute;gal&eacute;e<br />\r\n<br />\r\nL&#039;autofocus avanc&eacute; utilise 45 collimateurs de type crois&eacute; pour effectuer une mise au point avec une extr&ecirc;me pr&eacute;cision, m&ecirc;me dans un environnement aussi obscur qu&#039;un clair de lune. Prenez vos photos en toute s&eacute;r&eacute;nit&eacute; lorsque vous utilisez une faible profondeur de champ et suivez le mouvement des sujets qui se d&eacute;placent dans le cadre.<br />\r\n<br />\r\nVotre fen&ecirc;tre sur le monde<br />\r\n<br />\r\nLe grand viseur &agrave; pentaprisme du EOS 6D Mark II vous aide &agrave; voir clairement ce qui vous entoure, &agrave; tisser des liens naturels avec vos sujets et &agrave; prendre des photos de fa&ccedil;on plus instinctive.<br />\r\n<br />\r\nComposition sous tous les angles<br />\r\n<br />\r\nPrenez en toute simplicit&eacute; des photos depuis des angles bas ou hauts dans les grands espaces, gr&acirc;ce &agrave; l&#039;&eacute;cran orientable du EOS 6D Mark II, qui pivote et se tourne dans toutes les directions. Essayez de l&#039;utiliser au niveau de la taille pour r&eacute;aliser des portraits plus naturels.<br />\r\n<br />\r\nLe GPS int&eacute;gr&eacute; suit chacun de vos mouvements<br />\r\n<br />\r\nG&eacute;olocalisez chacune de vos photos en indiquant votre emplacement actuel, o&ugrave; que vous vous trouviez dans le monde. Cette fonction se r&eacute;v&egrave;le int&eacute;ressante pour retracer votre parcours en vue d&#039;une reconnaissance, ou &eacute;crire des l&eacute;gendes pr&eacute;cises pour d&eacute;crire votre p&eacute;riple.<br />\r\n<br />\r\nCon&ccedil;u pour &ecirc;tre utilis&eacute; avec votre smartphone ou votre tablette<br />\r\n<br />\r\nLe EOS 6D Mark II utilise la technologie Bluetooth&reg; pour &eacute;tablir une connexion Wi-Fi avec votre smartphone ou votre tablette en toute simplicit&eacute;. Parcourez et s&eacute;lectionnez les images sur l&#039;&eacute;cran de votre p&eacute;riph&eacute;rique, puis partagez-les avec vos amis. Votre p&eacute;riph&eacute;rique peut &eacute;galement servir de t&eacute;l&eacute;commande, y compris en mode vis&eacute;e par l&#039;&eacute;cran.<br />\r\n<br />\r\nApplication Mon Coach Photo Canon<br />\r\n<br />\r\nId&eacute;ale pour tous les conteurs visuels, notre application Mon Coach Photo Canon vous donne acc&egrave;s &agrave; des informations et du contenu sur mesure et de haut niveau quand vous en avez le plus besoin. Vous allez pouvoir donner vie &agrave; vos histoires.<br />\r\n<br />\r\nVid&eacute;os cin&eacute;matographiques Full HD<br />\r\n<br />\r\nR&eacute;alisez de superbes vid&eacute;os Full HD gr&acirc;ce &agrave; l&#039;effet de faible profondeur de champ caract&eacute;ristique de la vid&eacute;o professionnelle. Le mode autofocus CMOS Dual Pixel s&#039;ajuste en toute transparence pour conserver la nettet&eacute; des objets sans changement de mise au point brusque et g&ecirc;nant. Par ailleurs, le stabilisateur d&#039;image num&eacute;rique &agrave; 5 axes int&eacute;gr&eacute; fluidifie les mouvements ind&eacute;sirables de l&#039;appareil photo.<br />\r\n<br />\r\nCet appareil photo vous permet de r&eacute;aliser des vid&eacute;os Time-Lapse 4K en capturant le mouvement des sc&egrave;nes lentes avec un niveau de d&eacute;tail exceptionnel.', '1199.99', '1499.99', 'Image/Boutique/Canon EOS 6D  Mark II', 'Reflex-Canon-EOS-6D-Mark-II-Boitier-Nu-Noir.png', 2, 9);
+INSERT INTO `produit` (`id`, `nom`, `description`, `prix_ht`, `prix_ttc`, `stock`, `img_folder`, `img`, `id_categorie`, `id_sous_categorie`) VALUES
+(88, 'Canon EOS 1D X  Mark III', 'La vie est ponctu&eacute;e d&#039;instants uniques. Immortalisez-les avec l&#039;EOS-1D X Mark III et racontez votre histoire en images au monde entier.\r\n\r\nLa photographie sans limites.\r\n\r\nLorsque les conditions sont difficiles, que la lumi&egrave;re ambiante est faible et que la pression monte, l&#039;EOS-1D X Mark III vous permet de prendre des photos impressionnantes avant la concurrence. Gr&acirc;ce &agrave; ses performances exceptionnelles en basse lumi&egrave;re, sa technologie d&#039;autofocus &agrave; base de Deep Learning et ses vid&eacute;os en RAW 5,5K, cet appareil est l&#039;outil de cr&eacute;ation ultime.\r\n\r\nUne vitesse et une r&eacute;activit&eacute; in&eacute;gal&eacute;es\r\n\r\nCertaines occasions ne se pr&eacute;sentent qu&#039;une seule fois. Elles disparaissent en une fraction de seconde, &agrave; jamais. Immortalisez-les pour toujours avec l&#039;EOS-1D X Mark III en capturant jusqu&#039;&agrave; 20 im./s.\r\n\r\nUn autofocus incroyablement intelligent\r\n\r\nPrenez des photos d&#039;une clart&eacute; et d&#039;une nettet&eacute; exceptionnelles. Les algorithmes d&#039;autofocus &agrave; base de Deep Learning reconnaissent tous les types de situations et suivent m&ecirc;me les visages cach&eacute;s derri&egrave;re des lunettes ou un casque.\r\n\r\nUne qualit&eacute; remarquable, m&ecirc;me dans des conditions difficiles\r\n\r\nLe processeur DIGIC X et le capteur de 20 millions de pixels sur mesure produisent de magnifiques r&eacute;sultats en basse lumi&egrave;re (ISO 102400 max., extensible jusqu&#039;&agrave; 819 200). L&#039;EOS-1D X Mark III offre &eacute;galement une plage dynamique exceptionnelle.\r\n\r\nL&#039;outil id&eacute;al pour r&eacute;aliser des vid&eacute;os\r\n\r\nL&#039;EOS-1D X Mark III s&#039;adapte &agrave; la plupart des flux de production de vid&eacute;o. Filmez des s&eacute;quences plein format en 4K 60p ou RAW 5,5K afin de multiplier vos possibilit&eacute;s cr&eacute;atives.\r\n\r\nRestez connect&eacute; et comp&eacute;titif\r\n\r\nQue vous travailliez dans un stade dot&eacute; d&#039;une connexion Ethernet ou transmettiez vos photos &agrave; livrer via Wi-Fi, l&#039;EOS-1D X Mark III vous permet de garder une longueur d&#039;avance sur la concurrence.\r\n\r\nD&eacute;veloppez votre cr&eacute;ativit&eacute;\r\n\r\nReprenant les meilleures qualit&eacute;s de nos reflex num&eacute;riques et de nos appareils photo hybrides, l&#039;EOS-1D X Mark III est con&ccedil;u pour &ecirc;tre r&eacute;sistant, fiable et intuitif, tout en restant le plus discret possible', '5839,99', '7299,99', 5, 'Image/Boutique/Canon EOS 1D X  Mark III', 'eos-1dx-mark-iii.png', 2, 9),
+(87, 'Canon 7D Mark II', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dictum est sit amet ipsum dapibus, sit amet venenatis massa faucibus. Mauris nisi metus, molestie malesuada justo vitae, malesuada tempor orci. Nullam vitae risus vel augue vulputate posuere sit amet sit amet nisi. Quisque accumsan erat at felis luctus hendrerit. Donec vel libero convallis metus pretium ullamcorper a in eros. Phasellus eleifend purus purus, sit amet aliquet nunc accumsan efficitur. Maecenas sed mattis lectus. Nullam non eros leo. Aliquam erat volutpat. Duis pharetra pellentesque erat a laoreet. Sed aliquam at elit in sollicitudin. Cras rutrum non tortor quis ultrices. Vestibulum tortor turpis, lobortis nec ultrices ut, convallis eget diam. Ut pretium dapibus elit in lacinia. Etiam quis orci augue. Aenean ac auctor diam, in dapibus dolor.\r\n\r\n&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&eacute;&agrave;&agrave;&agrave;&ecirc;&acirc;\r\n\r\n\r\nDonec lacus ante, pellentesque vel malesuada ac, eleifend sit amet nisi. Nunc mollis, ligula non venenatis elementum, urna diam pulvinar odio, ut malesuada eros est nec lectus. Integer at arcu et quam condimentum rhoncus quis quis nibh. Integer sodales, justo eu efficitur pellentesque, tellus risus rutrum ex, id hendrerit magna massa vitae ante. Duis sed semper eros, eu venenatis turpis. Nulla vel accumsan nisl. Sed fringilla sapien varius, vestibulum tellus sed, sagittis orci. Maecenas ornare nisl nisi, nec rutrum ex hendrerit eget. Vestibulum dictum porta nisl, eget varius dolor maximus ut. Suspendisse potenti. Donec rutrum congue odio, sed vulputate velit. Nunc nec molestie dui, nec lacinia ex. Curabitur tincidunt libero risus, non rhoncus dui tincidunt nec. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vulputate ante lectus, tempor rhoncus lacus volutpat eu. Proin nec augue elit.\r\n\r\nQuisque eleifend dapibus vulputate. In sodales mi lacus, in sodales velit viverra a. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc vestibulum blandit risus, ac sollicitudin nulla. Nulla ultricies vitae ante eu vehicula. Aenean placerat imperdiet purus non varius. Mauris ut nisl consequat, elementum justo a, tempor massa. Donec ornare libero lectus, eu rhoncus risus tincidunt vitae. Proin accumsan nulla non magna dictum sagittis. Aliquam et mauris nec ex eleifend maximus eu ut magna. Nulla ante est, maximus nec sollicitudin nec, bibendum ut diam. Mauris rutrum condimentum molestie. Nulla facilisi. Mauris risus dolor, mattis pharetra egestas eget, blandit non augue. Integer congue eros erat, sit amet vehicula diam blandit non. Aenean venenatis mattis nulla, at dictum ex hendrerit ac.', '1039,99', '1299,99', 5, 'Image/Boutique/Canon 7D Mark II', '616N44gQfrL._AC_SX466_.png', 2, 9);
 
 -- --------------------------------------------------------
 
@@ -172,6 +250,7 @@ CREATE TABLE `utilisateurs` (
 
 INSERT INTO `utilisateurs` (`id`, `login`, `password`, `nom`, `prenom`, `email`, `id_droits`) VALUES
 (1, 'julia-denivet', '$2y$10$SP0Mv2UCAKdG8XLQEjLoauPMeJTFv.Pb/QEAQT8iXQHlIuKOYNmXi', 'Denivet', 'Julia', 'julia.denivet@laplateforme.io', 1337),
+(8, 'lvandermeijden', '$2y$10$vMq40giMf2chqJGByuWs8OKHySV2BIKO1EvaPYNs8m.sCgHyol/62', 'Van Der MEIJDEN', 'Luc', 'vadnderluc@icloud.com', 1),
 (6, 'lucvandermeijden', '$2y$10$.x3C2P0Hu/m7XTppXQ/W4.xmOAcGg8lZu3RIQ5Egy.jLRZ1hLj9aC', 'Van Der MEIJDEN', 'Luc', 'vanderluc@icloud.com', 1337);
 
 --
@@ -179,9 +258,27 @@ INSERT INTO `utilisateurs` (`id`, `login`, `password`, `nom`, `prenom`, `email`,
 --
 
 --
+-- Index pour la table `adresse`
+--
+ALTER TABLE `adresse`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `categorie`
 --
 ALTER TABLE `categorie`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `commande`
+--
+ALTER TABLE `commande`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `commande_produit`
+--
+ALTER TABLE `commande_produit`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -219,16 +316,34 @@ ALTER TABLE `utilisateurs`
 --
 
 --
+-- AUTO_INCREMENT pour la table `adresse`
+--
+ALTER TABLE `adresse`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT pour la table `categorie`
 --
 ALTER TABLE `categorie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+
+--
+-- AUTO_INCREMENT pour la table `commande`
+--
+ALTER TABLE `commande`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT pour la table `commande_produit`
+--
+ALTER TABLE `commande_produit`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT pour la table `commentaire`
 --
 ALTER TABLE `commentaire`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `favoris`
@@ -240,16 +355,16 @@ ALTER TABLE `favoris`
 -- AUTO_INCREMENT pour la table `panier`
 --
 ALTER TABLE `panier`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT pour la table `produit`
 --
 ALTER TABLE `produit`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateurs`
 --
 ALTER TABLE `utilisateurs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;

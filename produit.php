@@ -23,7 +23,7 @@
 		</header>
 		
 		<main id="fiche_produit">
-			<h1 id="titre_produit"><?php echo $data['nom'] ?></h1>
+			<h1 class="titre"><?php echo $data['nom'] ?></h1>
 			
 			<section id="block_haut_produit">
 				<section id="block_image_produit">
@@ -40,8 +40,18 @@
 			</section>
 
 			<section id="block_description_produit">
-				<div class="description_produit">
-					<?php echo $data["description"] ?>
+				<div id="description_produit">
+					<?php echo nl2br($data["description"]) ?>
+				</div>
+			</section>
+			
+			<section id="block_commentaire_produit">
+				<div id="ajout_commentaire_produit">
+					<h2>Ajoutez un commentaire</h2>
+					<?php $var->ajout_commentaire_produit($_GET['id']); ?>
+				</div>
+				<div id="affichage_commentaire_produit">
+					<?php $var->affichage_commentaire_produit($_GET['id']); ?>
 				</div>
 			</section>
 		</main>

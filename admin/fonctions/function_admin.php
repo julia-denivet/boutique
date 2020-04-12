@@ -19,7 +19,7 @@
 				echo '
 				<section class="admin_affichage_list">
 					<h4 class="name">', $data['nom'] ,'</h4>
-					<form method="post">
+					<form method="post" class="form_favoris">
 						<select class="liste_produit_favoris"  name="liste_produit">';
 							$requete2 = "SELECT id, nom FROM produit";
 							$sql2 = mysqli_query($connexion, $requete2);
@@ -38,7 +38,7 @@
 						echo '
 						</select>
 						<input type="hidden" name="id_favoris" value="', $data['0'] ,'"/>
-						<input type="submit" class="bouton_favoris" name="modif_favoris" value="Modifier"/>
+						<input type="submit" class="modif_img" name="modif_favoris" value="Modifier"/>
 					</form>
 				</section>
 				';
@@ -98,7 +98,56 @@
 			return($data);
 		}
 		
-		public function modif_produit($id, $bouton, $nom, $description, $sous_categorie, $prix_ht, $prix_ttc, $tmp_file, $type_file, $name_file)
+		public function ajouter_produit($bouton, $nom, $description, $sous_categorie, $prix_ht, $prix_ttc, $stock, $tmp_file, $type_file, $name_file)
+		{
+			if(isset($bouton))
+			{
+				if(!empty($nom) && !empty($description) && !empty($sous_categorie) && !empty($prix_ht) && !empty($prix_ttc) && !empty($stock) && !empty($tmp_file) && !empty($type_file) && !empty($name_file))
+				{
+					$connexion = mysqli_connect($this->host, $this->username, $this->password, $this->db);
+					$nouveau_produit = "SELECT id FROM produit WHERE nom = '".$nom."'";
+					$resultat = mysqli_query ($connexion, $nouveau_produit);
+					$nombre_produit = mysqli_num_rows($resultat);
+
+					if($nombre_produit < 1)
+					{
+						if(is_uploaded_file($tmp_file))
+						{
+							mkdir("../Image/Boutique/".$nom."");
+							$content_dir = "../Image/Boutique/".$nom."/";
+							move_uploaded_file($tmp_file, $content_dir . $name_file);
+							$content_dir = "Image/Boutique/".$nom;
+
+							$description = htmlentities($description, ENT_QUOTES);
+
+							$requete2 = "SELECT id_parent FROM categorie WHERE id = '".$sous_categorie."'";
+							$sql2 = mysqli_query($connexion, $requete2);
+							$data2 = mysqli_fetch_array($sql2);
+							$categorie = $data2['id_parent'];
+
+							$requete= "INSERT INTO produit (nom, description, prix_ht, prix_ttc, stock, img_folder, img, id_categorie, id_sous_categorie) VALUES ('$nom', '$description', '$prix_ht', '$prix_ttc', '$stock', '$content_dir', '$name_file', '$categorie', '$sous_categorie')";
+							mysqli_query($connexion, $requete);
+							mysqli_close($connexion);
+							header('Location: admin.php');
+						}
+						else
+						{
+							echo "L'image est introuvable";
+						}
+					}
+					else
+					{
+						echo "Le produit $nom est déjà enregistré";
+					}
+				}
+				else
+				{
+					echo "Veuillez remplir toutes les casses";
+				}
+			}
+		}
+		
+		public function modif_produit($id, $bouton, $nom, $description, $sous_categorie, $prix_ht, $prix_ttc, $stock, $tmp_file, $type_file, $name_file)
 		{
 			$data = $this->data_produit($id);
 			$connexion = mysqli_connect($this->host, $this->username, $this->password, $this->db);
@@ -109,12 +158,14 @@
 					$requete = "UPDATE produit SET nom='".$nom."' WHERE id='".$id."'";
 					$sql = mysqli_query($connexion, $requete);
 				}
+				
 				if($description != $data['description'])
 				{
-					$description = nl2br(htmlentities($description, ENT_QUOTES));
+					$description = htmlentities($description, ENT_QUOTES);
 					$requete = "UPDATE produit SET description='".$description."' WHERE id='".$id."'";
 					$sql = mysqli_query($connexion, $requete);
 				}
+				
 				if($sous_categorie != $data['id_sous_categorie'])
 				{
 					$requete2 = "SELECT id_parent FROM categorie WHERE id = '".$sous_categorie."'";
@@ -125,16 +176,25 @@
 					$requete = "UPDATE produit SET id_sous_categorie = '".$sous_categorie."', id_categorie = '".$categorie."' WHERE id='".$id."'";
 					$sql = mysqli_query($connexion, $requete);
 				}
+				
 				if($prix_ht != $data['prix_ht'])
 				{
 					$requete = "UPDATE produit SET prix_ht='".$prix_ht."' WHERE id='".$id."'";
 					$sql = mysqli_query($connexion, $requete);
 				}
+				
 				if($prix_ttc != $data['prix_ttc'])
 				{
 					$requete = "UPDATE produit SET prix_ttc='".$prix_ttc."' WHERE id='".$id."'";
 					$sql = mysqli_query($connexion, $requete);
 				}
+				
+				if($stock != $data['stock'])
+				{
+					$requete = "UPDATE produit SET stock='".$stock."' WHERE id='".$id."'";
+					$sql = mysqli_query($connexion, $requete);
+				}
+				
 				if(is_uploaded_file($tmp_file))
 				{
 					$content_dir = $data['img_folder'];
@@ -146,6 +206,7 @@
 					$requete = "UPDATE produit SET img='".$name_file."' WHERE id='".$id."'";
 					$sql = mysqli_query($connexion, $requete);
 				}
+				
 				echo "<meta http-equiv='refresh' content='0.5 ;URL='admin.php''>";
 			}
 		}
@@ -187,55 +248,6 @@
 				}
 				reset($objects);
 				rmdir($dossier);
-			}
-		}
-		
-		public function ajouter_produit($bouton, $nom, $description, $sous_categorie, $prix_ht, $prix_ttc, $tmp_file, $type_file, $name_file)
-		{
-			if(isset($bouton))
-			{
-				if(!empty($nom) && !empty($description) && !empty($sous_categorie) && !empty($prix_ht) && !empty($prix_ttc))
-				{
-					$connexion = mysqli_connect($this->host, $this->username, $this->password, $this->db);
-					$nouveau_produit = "SELECT id FROM produit WHERE nom = '".$nom."'";
-					$resultat = mysqli_query ($connexion, $nouveau_produit);
-					$nombre_produit = mysqli_num_rows($resultat);
-
-					if($nombre_produit < 1)
-					{
-						if(is_uploaded_file($tmp_file))
-						{
-							mkdir("../Image/Boutique/".$nom."");
-							$content_dir = "../Image/Boutique/".$nom."/";
-							move_uploaded_file($tmp_file, $content_dir . $name_file);
-							$content_dir = "Image/Boutique/".$nom;
-
-							$description = nl2br(htmlentities($description, ENT_QUOTES));
-							
-							$requete2 = "SELECT id_parent FROM categorie WHERE id = '".$sous_categorie."'";
-							$sql2 = mysqli_query($connexion, $requete2);
-							$data2 = mysqli_fetch_array($sql2);
-							$categorie = $data2['id_parent'];
-							
-							$requete= "INSERT INTO produit (nom, description, prix_ht, prix_ttc, img_folder, img, id_categorie, id_sous_categorie) VALUES ('$nom', '$description', '$prix_ht', '$prix_ttc', '$content_dir', '$name_file', '$categorie', '$sous_categorie')";
-							mysqli_query($connexion, $requete);
-							mysqli_close($connexion);
-							header('Location: admin.php');
-						}
-						else
-						{
-							echo "L'image est introuvable";
-						}
-					}
-					else
-					{
-						echo "Le produit $nom est déjà enregistré";
-					}
-				}
-				else
-				{
-					echo "Veuillez remplir toutes les casses";
-				}
 			}
 		}
 		
@@ -368,8 +380,8 @@
 				echo '
 				<section class="admin_affichage_list">
 					<h4 class="name">', $data['login'] ,'</h4>
-					<form method="post">
-						<select class="liste_produit_favoris"  name="liste_droits">';
+					<form method="post" class="form_utilisateurs">
+						<select class="liste_produit_utilisateurs"  name="liste_droits">';
 							$requete2 = "SELECT id, nom FROM droits";
 							$sql2 = mysqli_query($connexion, $requete2);
 
@@ -387,10 +399,7 @@
 						echo '
 						</select>
 						<input type="hidden" name="id_utilisateur" value="', $data['id'] ,'"/>
-						<input type="submit" class="bouton_favoris" name="modif_droits" value="Modifier"/>
-					</form>
-					<form method="post">
-						<input type="hidden" name="id_utilisateur" value="', $data['id'] ,'"/>
+						<input type="submit" class="modif_img" name="modif_droits" value="Modifier"/>
 						<input type="submit" name="suppr_utilisateur" class="admin_suppr_img">
 					</form>
 				</section>

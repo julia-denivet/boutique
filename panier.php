@@ -25,7 +25,7 @@
 		</header>
 		
 		<main>
-			<h1>PANIER</h1>
+			<h1 class="titre">PANIER</h1>
 			<section id="panier">
 				<section id="panier_produit">
 					<?php
@@ -33,12 +33,13 @@
 					?>
 				</section>
 				<section id="commande">
-					<h3 style="font-family: Roboto">Sous-total : <span style="color: #e4332b"><?php echo $prix; ?> €</span></h3>
-					<h3 style="font-family: Roboto">Livraison : <span style="color: #e4332b">5.00 €</span></h3>
+					<h3 style="font-family: Roboto">Sous-total : <span style="color: #C51E19"><?php echo $prix; ?> €</span></h3>
+					<h3 style="font-family: Roboto">Livraison : <span style="color: #C51E19">Gratuite</span></h3>
 					<br />
-					<h2 style="font-family: Roboto">Total : <span style="color: #e4332b"><?php echo $prix + 5; ?> €</span></h2>
-					<form method="post">
-						<input type="button" class="ajout_panier" name="commande" value="Passer la commande"/>
+					<h2 style="font-family: Roboto">Total : <span style="color: #C51E19"><?php echo $prix; ?> €</span></h2>
+					<form action="commande.php" method="post">
+						<input type="hidden" name="prix" value="<?php echo $prix; ?>"/>
+						<input type="submit" class="ajout_panier" name="commande" value="Passer la commande"/>
 					</form>
 				</section>
 			</section>
