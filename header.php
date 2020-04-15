@@ -40,12 +40,7 @@
 			else
 			{
 				echo "
-				<li class='deroulant'><a><img alt='logo_profil' id='logo_menu' src='Image/Logo/profil.png'/></a>
-					<ul class='sous'>
-						<li class='sous_deroulant'><a href='connexion.php'>Connexion</a></li>
-						<li class='sous_deroulant'><a href='inscription.php'>Inscription</a></li>
-					</ul>
-				</li>
+				<li class='deroulant'><a href='connexion.php'><img alt='logo_profil' id='logo_menu' src='Image/Logo/profil.png'/></a></li>
 				";
 			}
 		?>
