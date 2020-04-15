@@ -22,10 +22,10 @@
 			return $query;
 		}
 		
-		public function donnees_profil_commande()
+		public function donnees_profil_commande($num_commande)
 		{
 			$connexion = mysqli_connect($this->host, $this->username, $this->password, $this->db);
-			$sql = "SELECT commande.numero_commande, date, commande.prix AS prix_total, adresse_facturation, adresse_livraison, nom, commande_produit.prix AS prix_produit, quantite FROM commande INNER JOIN commande_produit ON commande.numero_commande = commande_produit.numero_commande WHERE commande.id_utilisateur = '".$_SESSION['id']."'";
+			$sql = "SELECT commande.numero_commande, date, commande.prix AS prix_total, adresse_facturation, adresse_livraison, nom, commande_produit.prix AS prix_produit, quantite FROM commande INNER JOIN commande_produit ON commande.numero_commande = commande_produit.numero_commande WHERE commande.id_utilisateur = '".$_SESSION['id']."' AND commande.numero_commande = '".$num_commande."'";
 			$query = mysqli_query($connexion, $sql);
 			return $query;
 		}

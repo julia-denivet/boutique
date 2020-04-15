@@ -10,8 +10,8 @@
 	{
 ?>
 		<div class="affichage_liste_commande">
-			<div><a href="fiche_commande.php?id=<?php echo $data['id'] ?>"/><?php echo $data['numero_commande']; ?></a></div>
-			<div><?php echo $data['date']; ?></div>
+			<div><a href="fiche_commande.php?num_commande=<?php echo $data['numero_commande'] ?>"/><?php echo $data['numero_commande']; ?></a></div>
+			<div><?php echo date('d/m/Y', strtotime($data['date'])); ?></div>
 			<div><?php echo $data['prix']; ?> €</div>
 			<div><?php echo $data['paiement']; ?></div>
 		</div>

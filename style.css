@@ -668,6 +668,90 @@
 			width: 30%;
 		}
 
+/* FICHE COMMANDE */
+	
+#fiche_commande{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	width: 100%;
+	margin: 5px 0;
+}
+
+#fiche_commande_numero{
+	display: flex;
+	width: 48%;
+	padding: 1%;
+	margin: 5px 0;
+	background-color: #000000;
+	color: #FFFFFF;
+}
+
+#fiche_commande_date{
+	display: flex;
+	justify-content: flex-end;
+	width: 48%;
+	padding: 1%;
+	margin: 5px 0;
+	background-color: #000000;
+	color: #FFFFFF;
+}
+
+#fiche_commande_adresse{
+	display: flex;
+	justify-content: center;
+	width: 48%;
+	padding: 1%;
+	margin: 5px 0;
+	background-color: #FFFFFF;
+}
+
+#fiche_commande_produit{
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	margin: 5px 0;
+	background-color: #FFFFFF;
+}
+
+#fiche_commande_produit_titre{
+	display: flex;
+	justify-content: space-between;
+	width: 98%;
+	padding: 1%;
+	background-color: #000000;
+	color: #FFFFFF;
+}
+
+.fiche_commande_produit{
+	display: flex;
+	justify-content: space-between;
+	width: 98%;
+	padding: 1%;
+}
+
+.fiche_commande_nom{
+	width: 70%;
+}
+
+.fiche_commande_prix{
+	width: 20%;
+}
+
+.fiche_commande_quantite{
+	width: 10%;
+}
+
+#fiche_commandes_prix_total{
+	display: flex;
+	justify-content: flex-end;
+	width: 98%;
+	padding: 1%;
+	background-color: #000000;
+	color: #FFFFFF;
+}
+
 /* PANIER */
 
 	#panier{

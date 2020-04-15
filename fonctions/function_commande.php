@@ -30,14 +30,22 @@
 			$req = mysqli_query($connexion, $sql);
 			while ($data = mysqli_fetch_assoc($req))
 			{
-				$adresse = $data['nom'].'\n'.$data['prenom'].'\n'.$data['adresse'].'\n'.$data['comp_adresse'].'\n'.$data['code_postal'].' '.$data['ville'].'\n'.$data['pays'];
+				if(!empty($data['comp_adresse']))
+				{
+					$adresse = $data['nom'].' '.$data['prenom'].'\n'.$data['adresse'].'\n'.$data['comp_adresse'].'\n'.$data['code_postal'].' '.$data['ville'].'\n'.$data['pays'];
+				}
+				else
+				{
+					$adresse = $data['nom'].'\n'.$data['prenom'].'\n'.$data['adresse'].'\n'.$data['code_postal'].' '.$data['ville'].'\n'.$data['pays'];
+				}
+				
 				echo "
-					<section class='adresse_commande'>
+					<label class='adresse_commande'>
 						<input type='radio' name='adresse_facturation' value='", $adresse,"'/>
 				"; 
 						include 'script/block_adresse.php';
 				echo "
-					</section>
+					</label>
 				";
 			}
 		}
@@ -49,14 +57,22 @@
 			$req = mysqli_query($connexion, $sql);
 			while ($data = mysqli_fetch_assoc($req))
 			{
-				$adresse = $data['nom'].'\n'.$data['prenom'].'\n'.$data['adresse'].'\n'.$data['comp_adresse'].'\n'.$data['code_postal'].' '.$data['ville'].'\n'.$data['pays'];
+				if(!empty($data['comp_adresse']))
+				{
+					$adresse = $data['nom'].' '.$data['prenom'].'\n'.$data['adresse'].'\n'.$data['comp_adresse'].'\n'.$data['code_postal'].' '.$data['ville'].'\n'.$data['pays'];
+				}
+				else
+				{
+					$adresse = $data['nom'].'\n'.$data['prenom'].'\n'.$data['adresse'].'\n'.$data['code_postal'].' '.$data['ville'].'\n'.$data['pays'];
+				}
+				
 				echo "
-					<section class='adresse_commande'>
+					<label class='adresse_commande'>
 						<input type='radio' name='adresse_livraison' value='", $adresse,"'/>
 				";
 						include 'script/block_adresse.php';
 				echo "
-					</section>
+					</label>
 				";
 			}
 		}
