@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le :  Dim 12 avr. 2020 à 23:31
+-- Généré le :  mer. 15 avr. 2020 à 14:07
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.4.2
 
@@ -13,8 +13,6 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `boutique`
 --
-CREATE DATABASE IF NOT EXISTS `boutique` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `boutique`;
 
 -- --------------------------------------------------------
 
@@ -92,9 +90,11 @@ CREATE TABLE `commande` (
 --
 
 INSERT INTO `commande` (`id`, `id_utilisateur`, `numero_commande`, `date`, `prix`, `adresse_facturation`, `adresse_livraison`, `paiement`) VALUES
-(8, 6, '6127222701', '2020-04-13 00:27:01', '21099,93', 'Van Der MEIJDEN\nLuc\n8 bd vert plan\n\n13009 Marseille\nFrance', 'Van Der MEIJDEN\nLuc\n8 bd vert plan\n\n13009 Marseille\nFrance', 'Carte Bleue'),
-(9, 6, '6127231541', '2020-04-13 01:15:41', '21099,93', 'Van Der MEIJDEN\nLuc\n8 bd vert plan\n\n13009 Marseille\nFrance', 'Van Der MEIJDEN\nLuc\n8 bd vert plan\n\n13009 Marseille\nFrance', 'Paypal'),
-(10, 6, '6127232905', '2020-04-13 01:29:05', '7299,99', 'Van Der MEIJDEN\nLuc\n8 bd vert plan\n\n13009 Marseille\nFrance', 'Van Der MEIJDEN\nLuc\n8 bd vert plan\n\n13009 Marseille\nFrance', 'Carte Bleue');
+(12, 6, '6142130731', '2020-04-14 15:07:31', '7299,99', 'Van Der MEIJDEN Luc\r\n8 bd vert plan\r\n13009 Marseille\r\nFrance', 'Van Der MEIJDEN Luc\r\n8 bd vert plan\r\n13009 Marseille\r\nFrance', 'Paypal'),
+(13, 6, '6142131159', '2020-04-14 15:11:59', '1299,99', 'Van Der MEIJDEN Luc\r\n8 bd vert plan\r\n13009 Marseille\r\nFrance', 'Van Der MEIJDEN Luc\r\n8 bd vert plan\r\n13009 Marseille\r\nFrance', 'Carte Bleue'),
+(14, 6, '6153130318', '2020-04-15 15:03:18', '15899,97', 'Van Der MEIJDEN\nLuc\n8 bd vert plan\n13009 Marseille\nFrance', 'Van Der MEIJDEN\nLuc\n8 bd vert plan\n13009 Marseille\nFrance', 'Carte Bleue'),
+(15, 6, '6153130746', '2020-04-15 15:07:46', '7299,99', 'Van Der MEIJDEN\nLuc\n8 bd vert plan\n13009 Marseille\nFrance', 'Van Der MEIJDEN\nLuc\n8 bd vert plan\n13009 Marseille\nFrance', 'Paypal'),
+(16, 6, '6153131130', '2020-04-15 15:11:30', '7299,99', 'Van Der MEIJDEN\nLuc\n8 bd vert plan\n13009 Marseille\nFrance', 'Van Der MEIJDEN\nLuc\n8 bd vert plan\n13009 Marseille\nFrance', 'Carte Bleue');
 
 -- --------------------------------------------------------
 
@@ -115,11 +115,12 @@ CREATE TABLE `commande_produit` (
 --
 
 INSERT INTO `commande_produit` (`id`, `numero_commande`, `nom`, `prix`, `quantite`) VALUES
-(8, '6127222701', 'Canon 7D Mark II', '1299,99', 5),
-(9, '6127222701', 'Canon EOS 1D X  Mark III', '7299,99', 2),
-(10, '6127231541', 'Canon 7D Mark II', '1299,99', 5),
-(11, '6127231541', 'Canon EOS 1D X  Mark III', '7299,99', 2),
-(12, '6127232905', 'Canon EOS 1D X  Mark III', '7299,99', 1);
+(14, '6142130731', 'Canon EOS 1D X  Mark III', '7299,99', 1),
+(15, '6142131159', 'Canon 7D Mark II', '1299,99', 1),
+(16, '6153130318', 'Canon EOS 1D X  Mark III', '7299,99', 2),
+(17, '6153130318', 'Canon 7D Mark II', '1299,99', 1),
+(18, '6153130746', 'Canon EOS 1D X  Mark III', '7299,99', 1),
+(19, '6153131130', 'Canon EOS 1D X  Mark III', '7299,99', 1);
 
 -- --------------------------------------------------------
 
@@ -200,6 +201,14 @@ CREATE TABLE `panier` (
   `id_utilisateur` int(11) NOT NULL,
   `quantite` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `panier`
+--
+
+INSERT INTO `panier` (`id`, `id_produit`, `id_utilisateur`, `quantite`) VALUES
+(104, 88, 6, 1),
+(103, 87, 6, 1);
 
 -- --------------------------------------------------------
 
@@ -325,19 +334,19 @@ ALTER TABLE `adresse`
 -- AUTO_INCREMENT pour la table `categorie`
 --
 ALTER TABLE `categorie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT pour la table `commande`
 --
 ALTER TABLE `commande`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT pour la table `commande_produit`
 --
 ALTER TABLE `commande_produit`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT pour la table `commentaire`
@@ -355,7 +364,7 @@ ALTER TABLE `favoris`
 -- AUTO_INCREMENT pour la table `panier`
 --
 ALTER TABLE `panier`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- AUTO_INCREMENT pour la table `produit`

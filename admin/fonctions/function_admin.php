@@ -73,7 +73,7 @@
 				echo '
 				<section class="admin_affichage_list">
 					<h4 class="name"><a href=../produit.php?id=', $data['id'] ,'>', $data['nom'] ,'</a></h4>
-					<h4>', $data['prix_ttc'] ,' €</h4>
+					<h4 class="prix">', $data['prix_ttc'] ,' €</h4>
 					<a href="modifier_produit.php?id='.$data['id'].'" class="modif_img"></a>
 					<form method="post">
 						<input type="hidden" name="id_produit" value="', $data['id'] ,'"/>
